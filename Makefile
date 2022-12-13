@@ -1,42 +1,37 @@
-SHEL		=	/bin/bash
+NAME	=	a.out
 
-NAME		= so_long
+#
+# SRCS and OBJS
+#
 
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
-OBJ_DIR		= obj/
-HEADER		= ft_printf.h
-PRINT_DIR	= print
-LIBFT		= libft
+SRCS	=	/mlx
 
-FORMATS	= ft_printf.c ft_print_char.c ft_print_hex.c ft_print_number.c ft_print_pointer.c ft_print_string.c ft_print_unsigned.c ft_print_percent.c
+OBJS = $(SRCS:%.c=%.o)
 
-OBJ	= $(addprefix $(OBJ_DIR), $(FORMATS:.c=.o))
+#
+# Compiler and flags
+#
 
-OBJF =	.cache_exists
+CC		=	gcc
+CFLAGS	=	-Wall -Werror -Wextra
 
-all: $(NAME)
+#
+# Rules
+#
 
-$(NAME):	$(OBJ)
-			@cd ./$(LIBFT) && make
-			@cp $(LIBFT)/libft.a .
-			@mv libft.a $(NAME)
-			@ar -rcs $(NAME) $(OBJ)
-			@echo "- ft_printf is compiled -"
+all		: $(NAME)
 
-$(OBJ_DIR)%.o: %.c $(HEADER)| $(OBJF)
-			@$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
-$(OBJF):
-		@mkdir -p $(OBJ_DIR)
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-clean:
-		@rm -rf $(OBJ_DIR)
-		@make clean -C $(LIBFT)
+clean	:
+	rm -rf $(OBJS)
 
-fclean: clean
-		@rm -f $(NAME)
-		@rm -f $(LIBFT)/libft.a
+fclean	: clean
+	rm -rf	$(NAME)
 
 re:	fclean all
 
