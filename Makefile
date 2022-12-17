@@ -1,31 +1,14 @@
 NAME	=	a.out
-
-#
-# SRCS and OBJS
-#
-
-SRCS	=	/mlx
-
-OBJS = $(SRCS:%.c=%.o)
-
-#
-# Compiler and flags
-#
-
 CC		=	gcc
 CFLAGS	=	-Wall -Werror -Wextra
-
-#
-# Rules
-#
 
 all		: $(NAME)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJ) main.c -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean	:
 	rm -rf $(OBJS)

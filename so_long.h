@@ -6,6 +6,5 @@
 #include <stdlib.h> /*malloc(), free() and exit()*/
 #include <stdio.h> /*perror()*/
 #include <string.h> /*strerror()*/
-#include "ft_printf.h"
 
 #endif
