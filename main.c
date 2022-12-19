@@ -37,24 +37,38 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
+int exit_hook()
+{
+	exit(0);
+}
+
 int	main(void)
 {
-	t_vars vars;
-	t_data image;
+	t_vars 	vars;
+	t_data 	image;
+	int		color;
+
+	int img_width = 1920;
+	int img_height = 1080;
 
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello World");
-	image.img = mlx_new_image(vars.mlx, 500, 500);
+	vars.win = mlx_new_window(vars.mlx, img_width, img_height, "so_long");
+	image.img = mlx_new_image(vars.mlx, img_width,img_height);
 	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian);
-	for (int i = 0 ; i < 500 ; i++)
+	for (int i = 0 ; i < img_height - 1 ; i++)
 	{
-		for (int j = 0 ; j < 500 ; j++)
+		for (int j = 0 ; j < img_height - 1 ; j++)
 		{
-			my_mlx_pixel_put(&image, i, j, 0x00FFFFFF);
+			double r = (double)(img_width - j) / (img_width - 1);
+			double g = (double)(i) / (img_height - 1);
+			double b = 1;
+			color = ((int)(255.999 * r) << 16) + ((int)(255.999 * g) << 8) + ((int)(255.999 * b));
+			my_mlx_pixel_put(&image, i, j, color);
 		}	
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
-	mlx_key_hook(vars.win, key_hook, &vars); // esc key press event
+	mlx_hook(vars.win, 17, 0, exit_hook, 0); // esc key
+	mlx_key_hook(vars.win, key_hook, &vars); // clicking cross
 	mlx_loop(vars.mlx);
 
 	return (0);
