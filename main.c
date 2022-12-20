@@ -3,6 +3,12 @@
 #include "mlx_linux/mlx.h"
 #include <stdio.h>
 
+#define KEY_ESC				65307
+#define KEY_W				119
+#define KEY_S				115
+#define KEY_A				97
+#define KEY_D				100
+
 //이미지의 정보를 나타내는 변수를 저장한 구조체
 typedef struct	s_data {
 	void	*img;
@@ -29,7 +35,7 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
 int	key_hook(int keycode, t_vars *vars)
 {
 	printf("%d\n", keycode);
-	if(keycode == 65307)
+	if(keycode == KEY_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
