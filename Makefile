@@ -8,13 +8,19 @@ all		: $(NAME)
 	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) image.c -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@cd ./libft && make
+	@cp libft/libft.a .
+	@mv libft.a $(NAME)
+	@ar -rcs $(NAME) $(OBJ)
+	$(CC) $(OBJ) main.c -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean	:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJ)
+	@make clean -C libft
 
 fclean	: clean
-	rm -rf	$(NAME)
+	@rm -f	$(NAME)
+	@rm -f	libft/libft.a
 
 re:	fclean all
 

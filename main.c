@@ -73,7 +73,7 @@ int	main(void)
 		}	
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
-	mlx_hook(vars.win, 17, 0, exit_hook, 0); // esc key
+	mlx_hook(vars.win, KEY_ESC, 0, exit_hook, 0); // esc key
 	mlx_key_hook(vars.win, key_hook, &vars); // clicking cross
 	mlx_loop(vars.mlx);
 
