@@ -2,10 +2,10 @@
 #include "so_long.h"
 #include "libft/libft.h"
 
-void	check_map(char *buf, t_data map)
+void	check_map(char *buf, t_data *map)
 {
-	map->map_size = ft_strlen(buf) - map->map_y;
-	if (map->map_size != map->map_x * map->map_y)
+	map->map_size = ft_strlen(buf) - map->map_height;
+	if (map->map_size != map->map_width * map->map_height)
 	{
 		ft_printf("ERROR\n The map size is invalid.");
 		exit(1);
@@ -14,7 +14,7 @@ void	check_map(char *buf, t_data map)
 	check_limit_y(map);
 }
 
-void	check_components(char *buf, t_data comp)
+void	check_components(char *buf, t_data *comp)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ void	check_components(char *buf, t_data comp)
 		if (buf[i] == 'E')
 			comp->exit++;
 		if (buf[i] == '\n')
-			comp->map_y++;
+			comp->map_height++;
 		i++;
 	}
 	if (comp->player != 1)
@@ -36,7 +36,7 @@ void	check_components(char *buf, t_data comp)
 		ft_printf("ERROR\nOnly one player is available.");
 		exit(1);
 	}
-	if (comp->c < 1)
+	if (comp->collect < 1)
 	{
 		ft_printf("ERROR\nCollects should be more than one.");
 		exit(1);
@@ -62,7 +62,7 @@ char	*join_line(char *line, char c)
 	i = 0;
 	while (line[i])
 	{
-		str[i] = line[i]
+		str[i] = line[i];
 		i++;
 	}
 	str[i] = c;

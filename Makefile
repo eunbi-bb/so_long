@@ -1,27 +1,48 @@
-NAME	=	a.out
-CC		=	gcc
-CFLAGS	=	-Wall -Werror -Wextra
+SHELL		=	/bin/bash
 
-all		: $(NAME)
+NAME		=	so_long
 
-%.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+MLX			=	mlx_linux/
+OBJ_DIR		=	obj/
+HEADER		=	so_long.h
 
-$(NAME): $(OBJ)
-	@cd ./libft && make
-	@cp libft/libft.a .
-	@mv libft.a $(NAME)
-	@ar -rcs $(NAME) $(OBJ)
-	$(CC) $(OBJ) main.c -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+CC			=	gcc
+CFLAGS		=	-Wall -Werror -Wextra -g
+MLX_CC		=	-I/usr/include -Imlx_linux -O3
 
-clean	:
-	@rm -rf $(OBJ)
-	@make clean -C libft
+SRC			=	so_long.c set_data.c put_image.c mapping.c map_check.c key_hook.c check_limit.c
+OBJ			=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
-fclean	: clean
-	@rm -f	$(NAME)
-	@rm -f	libft/libft.a
+OBJF		=	.cache_exists
 
-re:	fclean all
+###################################
 
-.PHONY: all clean fclean re
+all:	$(NAME)
+
+$(NAME):	$(OBJ) $(OBJF)
+		@make -C libft
+		@cp libft/libft.a .
+		@make -s -C $(MLX)
+		@(CC) @(CFLAGS) $(OBJ) libft.a $(MLX_CC) -o $(NAME)
+
+$(OBJ_DIR)%.o: %.c $(HEADER)| $(OBJF)
+		$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJF):
+		@mkdir -p $(OBJ_DIR)
+		@touch $(OBJF)
+
+clean:
+		@rm -rf $(OBJ_DIR)
+		@make clean -C libft
+		@rm -f $(OBJF)
+		@make clean -C $(MLX)
+
+fclean:	clean
+		@rm -f $(NAME)
+		@rm -f libft.a
+		@rm -f libft/libft.a
+
+re:		fclean all
+
+.PHONY:	all clean fclean re

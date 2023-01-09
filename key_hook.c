@@ -8,7 +8,7 @@
 #define RIGHT 2
 
 
-int	key_hook(int keycode, t_vars *vars)
+int	key_hook(int keycode, t_data *vars)
 {
 	printf("%d\n", keycode);
 	if(keycode == KEY_ESC)
@@ -29,7 +29,7 @@ void	up(t_data *move)
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y - 1][move->player_x] = 'P';
 	move->player_mov++;
-	fill_window(move);
+	mapping(move);
 }
 
 void	down(t_data *move)
@@ -37,7 +37,7 @@ void	down(t_data *move)
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y + 1][move->player_x] = 'P';
 	move->player_mov++;
-	fill_window(move);
+	mapping(move);
 }
 
 void	left(t_data *move)
@@ -45,7 +45,7 @@ void	left(t_data *move)
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y][move->player_x - 1] = 'P';
 	move->player_mov++;
-	fill_window(move);
+	mapping(move);
 }
 
 void	right(t_data *move)
@@ -53,19 +53,19 @@ void	right(t_data *move)
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y][move->player_x + 1] = 'P';
 	move->player_mov++;
-	fill_window(move);
+	mapping(move);
 }
 
-int	finish(int	keyhook, t_data *move)
+int	finish(int keyhook, t_data *move)
 {
 	if (move->collect == 0
-	&& ((keyhook == UP && move->map[move->player_y - 1][move->player_x] = 'E')
-	|| (keyhook == DOWN && move->map[move->player_y + 1][move->player_x] = 'E')
-	|| (keyhook == LEFT && move->map[move->player_y][move->player_x - 1] = 'E')
-	|| (keyhook == RIGHT && move->map[move->player_y][move->player_x +1] = 'E')))
+		&& ((keyhook == 2 && move->map[move->player_y][move->player_x + 1] == 'E')
+		|| (keyhook == 1 && move->map[move->player_y + 1][move->player_x] == 'E')
+		|| (keyhook == 0 && move->map[move->player_y][move->player_x - 1] == 'E')
+		|| (keyhook == 13 && move->map[move->player_y - 1][move->player_x] == 'E')))
 	{
 		ft_printf("FINISH\n Good Job Minie!");
-		mlx_key_hook(game.win, key_hook, &move);
+		mlx_key_hook(move->win, key_hook, &move);
 	}
 	return (0);
 }

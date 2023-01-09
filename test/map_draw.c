@@ -1,7 +1,8 @@
 #include "mlx_linux/mlx.h"
 #include "so_long.h"
 #include "libft/libft.h"
-int	copy_line(char *str, t_data *var)
+
+int	map_line(char *str, t_data *var)
 {
 	t_list	*line;
 	t_list	*curr_line;
@@ -42,17 +43,16 @@ void	freemap(t_data *var)
 	free (curr_line)
 }
 
-int	draw_map(t_data *var)
+int	draw_map(int fd)
 {
-	char	*str;
+	char	buf;
+	char	*line;
+	int		rd_bytes;
 
-	str = get_next_line(var->fd);
-	while (str != NULL)
-	{
-		copy_line(str, var);
-		free(str);
-		str = get_next_line(var->fd)
-	}
-	free (str);
-	return (1);
+	if (fd < 0)
+		return (NULL);
+	line = malloc(1);
+	line[0] = '\0';
+	while (!)
+
 }

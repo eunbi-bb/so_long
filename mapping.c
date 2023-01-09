@@ -6,13 +6,13 @@
 void	background(t_data *img)
 {
 	img->y = 0;
-	while ((img->y) < (img->map_y))
+	while ((img->y) < (img->map_height))
 	{
 		img->x = 0;
-		while ((img->x) < (img->map_x))
+		while ((img->x) < (img->map_width))
 		{
 			img->fd = mlx_xpm_file_to_image(img->mlx, "/images/background.xpm", &img->pixel, &img->pixel);
-			mlx_put_image_to_window (img->mlx, img->mlx_win, img->fd, (img->pixel * img->x), (img->pixel *img->y));
+			mlx_put_image_to_window (img->mlx, img->win, img->fd, (img->pixel * img->x), (img->pixel *img->y));
 			img->x++;
 		}
 	}
@@ -25,10 +25,10 @@ int	collect_total(t_data *img)
 
 	i = 0;
 	img->y = 0;
-	while ((img->y) < (img->map_y))
+	while ((img->y) < (img->map_height))
 	{
 		img->x = 0;
-		while ((img->x) < (img->map_x))
+		while ((img->x) < (img->map_width))
 		{
 			if (img->map[img->y][img->x] == 'C')
 			{
@@ -43,13 +43,13 @@ int	collect_total(t_data *img)
 
 void mapping(t_data *img)
 {
-	img->collect == collect_total(img);
+	img->collect = collect_total(img);
 	background(img);
 	img->y = 0;
-	while ((img->y) < (img->map_y))
+	while ((img->y) < (img->map_height))
 	{
 		img->x = 0;
-		while ((img->x) < (img->map_x))
+		while ((img->x) < (img->map_width))
 		{
 			if (img->map[img->y][img->x] == '1')
 				put_walls(img);
