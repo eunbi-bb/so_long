@@ -4,17 +4,20 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
+
 void	window(t_data *window)
 {
 	int win_width;
 	int win_height;
-	window->pixel = 50;
 
+	window->pixel = 50;
 	win_width = window->pixel * window->map_width;
 	win_height = window->pixel * window->map_height;
+	// printf("solong Map height: %d\n", window->map_height);
+	// printf("solong Map width: %d\n", window->map_width);
 	window->mlx = mlx_init();
 	window->win = mlx_new_window(window->mlx, win_width, win_height, "so_long");
-	//mapping(window);
+	mapping(window);
 }
 
 void	open_map(char **argv, t_data *map)
