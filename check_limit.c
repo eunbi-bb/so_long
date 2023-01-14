@@ -19,7 +19,7 @@ void	check_limit_x(t_data *var)
 		var->x++;
 	}
 	var->x = 0;
-	var->y = var->map_height;
+	var->y = var->map_height - 1;
 	while ((var->x) < (var->map_width))
 	{
 		if(var->map[var->y][var->x] != '1')

@@ -39,16 +39,16 @@ void	check_components(char *buf, t_data *comp)
 		ft_printf("ERROR\nOnly one player is available.\n");
 		exit(1);
 	}
-	if (comp->collect < 1)
-	{
-		ft_printf("ERROR\nCollects should be more than one.\n");
-		exit(1);
-	}
-	if (comp->exit != 1)
-	{
-		ft_printf("ERROR\nOnly one exit is available.\n");
-		exit(1);
-	}
+	// if (comp->collect < 1)
+	// {
+	// 	ft_printf("ERROR\nCollects should be more than one.\n");
+	// 	exit(1);
+	// }
+	// if (comp->exit != 1)
+	// {
+	// 	ft_printf("ERROR\nOnly one exit is available.\n");
+	// 	exit(1);
+	// }
 }
 //Check if I can use gnl func
 char	*join_line(char *line, char c)
@@ -60,8 +60,6 @@ char	*join_line(char *line, char c)
 	while (line[i])
 		i++;
 	str = malloc(i + 2);
-	if (!str)
-		return (NULL);
 	i = 0;
 	while (line[i])
 	{
@@ -79,6 +77,8 @@ int	check_line(char *line)
 	int	i;
 	
 	i = 0;
+	if(!line)
+		return (0);
 	while (line[i])
 	{
 		if (line[i] == '\0')

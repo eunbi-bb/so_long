@@ -31,7 +31,7 @@ int	key_press(int keycode, t_data *xy)
 	return (0);
 }
 
-int	close(void)
+int	win_close(void)
 {
 	exit(0);
 	return (0);

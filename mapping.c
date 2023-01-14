@@ -11,12 +11,12 @@ void	background(t_data *img)
 		img->x = 0;
 		while ((img->x) < (img->map_width))
 		{
-			img->fd = mlx_xpm_file_to_image(img->mlx, "/images/background.xpm", &img->pixel, &img->pixel);
-			mlx_put_image_to_window (img->mlx, img->win, img->fd, (img->pixel * img->x), (img->pixel *img->y));
+			img->file = mlx_xpm_file_to_image(img->mlx, "images/background.xpm", &img->pixel, &img->pixel);
+			mlx_put_image_to_window (img->mlx, img->win, img->file, img->pixel * img->x, img->pixel *img->y);
 			img->x++;
 		}
+		img->y++;
 	}
-	img->y++;
 }
 
 int	collect_total(t_data *img)

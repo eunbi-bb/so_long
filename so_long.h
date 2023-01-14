@@ -11,7 +11,7 @@
 #define KEY_ESC	65307
 
 typedef struct s_data{
-	char	*fd;
+	char	*file;
 	void	*mlx;
 	void	*win;
 	char	**map;
@@ -25,7 +25,7 @@ typedef struct s_data{
 	int		player_x;
 	int		player_y;
 	int		player_mov;
-	char	player_dir;
+	char	*player_dir;
 	int		collect;
 	int		exit;
 	int		count_exit;
