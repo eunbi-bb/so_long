@@ -63,4 +63,5 @@ void mapping(t_data *img)
 		}
 		img->y++;
 	}
+	// ft_printf("Movements: %d\n", img->count_move;
 }
