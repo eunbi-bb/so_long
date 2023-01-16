@@ -16,7 +16,7 @@ void	window(t_data *window)
 	// window->mlx = mlx_init();
 	// window->win = mlx_new_window(window->mlx, win_width, win_height, "so_long");
 	// mapping(window);
-	window->pixel = 60;
+	window->pixel = 80;
 	window->mlx = mlx_init();
 	window->win = mlx_new_window(window->mlx, window->pixel * window->map_width, window->pixel * window->map_height, "so_long");
 	mapping(window);
