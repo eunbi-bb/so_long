@@ -1,13 +1,6 @@
 #include "mlx_linux/mlx.h"
 #include "so_long.h"
 
-#define KEY_ESC	65307
-#define UP 2
-#define DOWN 1
-#define LEFT 
-#define RIGHT 2
-
-
 int	key_hook(int keycode, t_data *vars)
 {
 	printf("%d\n", keycode);
@@ -16,6 +9,13 @@ int	key_hook(int keycode, t_data *vars)
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}
+	return (0);
+}
+
+int	close_window(t_data *win)
+{
+	mlx_destroy_window(win->mlx, win->win);
+	exit(1);
 	return (0);
 }
 

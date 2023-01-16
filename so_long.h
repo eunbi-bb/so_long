@@ -9,6 +9,12 @@
 #include "libft/libft.h"
 
 #define KEY_ESC	65307
+#define	QUIT 17
+#define UP 65362
+#define DOWN 65364
+#define LEFT 65361
+#define RIGHT 65363
+#define LeaveWindowMask 1L << 5
 
 typedef struct s_data{
 	char	*file;
@@ -38,6 +44,7 @@ typedef struct s_data{
 void	window(t_data *window);
 void	open_map(char **argv, t_data *map);
 void	check_arg(int argc, char **argv);
+int		close_window(t_data *win);
 
 void	set_data(t_data *var);
 

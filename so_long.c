@@ -16,7 +16,7 @@ void	window(t_data *window)
 	// window->mlx = mlx_init();
 	// window->win = mlx_new_window(window->mlx, win_width, win_height, "so_long");
 	// mapping(window);
-	window->pixel = 30;
+	window->pixel = 60;
 	window->mlx = mlx_init();
 	window->win = mlx_new_window(window->mlx, window->pixel * window->map_width, window->pixel * window->map_height, "so_long");
 	mapping(window);
@@ -69,8 +69,8 @@ int	main(int argc, char **argv)
 	set_data(&game);
 	open_map(argv, &game);
 	window(&game);
-	// mlx_hook(game.win, KEY_ESC, 0, exit_hook, 0); // esc key
-	// mlx_key_hook(game.win, key_hook, &game); // clicking cross
+	mlx_hook(game.win, QUIT, LeaveWindowMask, close_window, &game); // Cross button
+	mlx_key_hook(game.win, key_hook, &game); // ESC key
 	mlx_loop(game.mlx);
 	exit(0);
 	return(0);
