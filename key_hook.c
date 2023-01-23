@@ -1,7 +1,7 @@
 #include "mlx_linux/mlx.h"
 #include "so_long.h"
 
-int	key_hook(int keycode, t_data *vars)
+int	ESC_hook(int keycode, t_data *vars)
 {
 	printf("%d\n", keycode);
 	if(keycode == KEY_ESC)
@@ -52,21 +52,30 @@ void	right(t_data *move)
 {
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y][move->player_x + 1] = 'P';
-	move->player_mov++;
+	if (move)
+		move->player_mov++;
 	mapping(move);
 }
 
 int	finish(int keyhook, t_data *move)
 {
 	if (move->collect == 0
-		&& ((keyhook == 2 && move->map[move->player_y][move->player_x + 1] == 'E')
-		|| (keyhook == 1 && move->map[move->player_y + 1][move->player_x] == 'E')
-		|| (keyhook == 0 && move->map[move->player_y][move->player_x - 1] == 'E')
-		|| (keyhook == 13 && move->map[move->player_y - 1][move->player_x] == 'E')))
+		&& ((keyhook == UP && move->map[move->player_y - 1][move->player_x] == 'E')
+		|| (keyhook == LEFT && move->map[move->player_y][move->player_x - 1] == 'E')
+		|| (keyhook == DOWN && move->map[move->player_y + 1][move->player_x] == 'E')
+		|| (keyhook == RIGHT && move->map[move->player_y][move->player_x + 1] == 'E')))
 	{
 		ft_printf("FINISH\n Good Job Minie!");
-		mlx_key_hook(move->win, key_hook, &move);
+		close_window(move);
 	}
+	if (keyhook == UP && move->map[move->player_y - 1][move->player_x] != '1' && move->map[move->player_y - 1][move->player_x] != 'E')
+		up(move);
+	if (keyhook == LEFT && move->map[move->player_y][move->player_x - 1] != '1' && move->map[move->player_y][move->player_x - 1] != 'E')
+		left(move);
+	if (keyhook == DOWN && move->map[move->player_y + 1][move->player_x] != '1' && move->map[move->player_y + 1][move->player_x] != 'E')
+		down(move);
+	if (keyhook == RIGHT && move->map[move->player_y][move->player_x + 1] != '1' && move->map[move->player_y][move->player_x + 1] != 'E')
+		right(move);
 	return (0);
 }
 

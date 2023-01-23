@@ -34,7 +34,7 @@ static char *Minie_pixel[] = {
 "q c #F7CA93",
 "w c #ECEF84",
 "e c gray100",
-"r c None",
+"r c none",
 /* pixels */
 "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
 "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",

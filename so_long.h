@@ -10,10 +10,10 @@
 
 #define KEY_ESC	65307
 #define	QUIT 17
-#define UP 65362
-#define DOWN 65364
-#define LEFT 65361
-#define RIGHT 65363
+#define UP 119
+#define DOWN 115
+#define LEFT 97
+#define RIGHT 100
 #define LeaveWindowMask 1L << 5
 
 typedef struct s_data{
@@ -68,7 +68,7 @@ char	*join_line(char *line, char c);
 int		check_line(char *line);
 char	*complete_map(int fd);
 
-int		key_hook(int keycode, t_data *vars);
+int		ESC_hook(int keycode, t_data *vars);
 int 	exit_hook();
 void	up(t_data *move);
 void	down(t_data *move);

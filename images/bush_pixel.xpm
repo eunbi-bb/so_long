@@ -42,7 +42,7 @@ static char *bush_pixel[] = {
 "p c #929A6B",
 "a c #99A172",
 "s c #F38282",
-"d c None",
+"d c #F0FFFFFF",
 /* pixels */
 "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
 "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",

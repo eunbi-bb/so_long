@@ -69,8 +69,9 @@ int	main(int argc, char **argv)
 	set_data(&game);
 	open_map(argv, &game);
 	window(&game);
+	mlx_hook(game.win, 2, 1L << 0, finish, &game);
 	mlx_hook(game.win, QUIT, LeaveWindowMask, close_window, &game); // Cross button
-	mlx_key_hook(game.win, key_hook, &game); // ESC key
+	mlx_key_hook(game.win, ESC_hook, &game); // ESC key
 	mlx_loop(game.mlx);
 	exit(0);
 	return(0);
