@@ -11,7 +11,7 @@ void	set_data(t_data *var)
 	var->y = 0;
 	var->pixel = 0;
 	var->player = 0;
-	var->player_dir = "images/Minie_pixel.xpm";
+	var->player_dir = "images/Minie_pixel_R.xpm";
 	var->count_move = 0;
 	var->count_start = 0;
 	var->count_collect = 0;

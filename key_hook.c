@@ -3,7 +3,6 @@
 
 int	ESC_hook(int keycode, t_data *vars)
 {
-	printf("%d\n", keycode);
 	if(keycode == KEY_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
@@ -28,7 +27,7 @@ void	up(t_data *move)
 {
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y - 1][move->player_x] = 'P';
-	move->player_mov++;
+	move->count_move++;
 	mapping(move);
 }
 
@@ -36,7 +35,7 @@ void	down(t_data *move)
 {
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y + 1][move->player_x] = 'P';
-	move->player_mov++;
+	move->count_move++;
 	mapping(move);
 }
 
@@ -44,7 +43,8 @@ void	left(t_data *move)
 {
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y][move->player_x - 1] = 'P';
-	move->player_mov++;
+	move->player_dir = "images/Minie_pixel_L.xpm";
+	move->count_move++;
 	mapping(move);
 }
 
@@ -52,8 +52,8 @@ void	right(t_data *move)
 {
 	move->map[move->player_y][move->player_x] = '0';
 	move->map[move->player_y][move->player_x + 1] = 'P';
-	if (move)
-		move->player_mov++;
+	move->player_dir = "images/Minie_pixel_R.xpm";
+	move->count_move++;
 	mapping(move);
 }
 

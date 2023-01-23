@@ -31,6 +31,8 @@ void	put_collect(t_data *img)
 void	put_exit(t_data *img)
 {
 	if (img->collect == 0)
-		img->file = mlx_xpm_file_to_image(img->mlx, "images/exit_pixel.xpm", &img->pixel, &img->pixel);
+		img->file = mlx_xpm_file_to_image(img->mlx, "images/exit_open.xpm", &img->pixel, &img->pixel);
+	else
+		img->file = mlx_xpm_file_to_image(img->mlx, "images/exit_close.xpm", &img->pixel, &img->pixel);
 	mlx_put_image_to_window (img->mlx, img->win, img->file, (img->pixel * img->x), (img->pixel * img->y));
 }
