@@ -21,6 +21,7 @@ typedef struct s_data{
 	void	*mlx;
 	void	*win;
 	char	**map;
+	char	*line;
 	int		map_size;
 	int		map_height;
 	int		map_width;
@@ -66,6 +67,7 @@ void	check_map(char *buf, t_data *map);
 void	check_components(char *buf, t_data *comp);
 char	*join_line(char *line, char c);
 int		check_line(char *line);
+void	read_map(char *file, t_data *map);
 char	*complete_map(int fd);
 
 int		ESC_hook(int keycode, t_data *vars);

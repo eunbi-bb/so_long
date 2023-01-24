@@ -5,9 +5,6 @@
 void	check_map(char *buf, t_data *map)
 {
 	map->map_size = ft_strlen(buf) - map->map_height;
-	printf("Map height: %d\n", map->map_height);
-	printf("Map width: %d\n", map->map_width);
-	printf("Map size: %d\n", map->map_size);
 	if (map->map_size != map->map_width * map->map_height)
 	{
 		ft_printf("ERROR\n The map size is invalid.\n");

@@ -6,23 +6,11 @@
 /*   By: eucho <eucho@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 09:21:42 by eucho         #+#    #+#                 */
-/*   Updated: 2022/12/21 14:22:43 by eunbi         ########   odam.nl         */
+/*   Updated: 2023/01/24 15:23:37 by eunbi         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 void	gnl_strlcpy(char *dst, char *src, size_t size)
 {

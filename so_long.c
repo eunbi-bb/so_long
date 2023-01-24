@@ -28,6 +28,7 @@ void	open_map(char **argv, t_data *map)
 	char	*buffer;
 	int		i;
 
+	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
@@ -37,7 +38,6 @@ void	open_map(char **argv, t_data *map)
 	buffer = complete_map(fd);
 	check_components(buffer, map);
 	map->map = ft_split(buffer, '\n'); // checke if I can use gnl
-	i = 0;
 	while (map->map[0][i] != '\0')
 	{
 		map->map_width++;
