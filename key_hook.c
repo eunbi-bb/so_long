@@ -65,7 +65,10 @@ int	finish(int keyhook, t_data *move)
 		|| (keyhook == DOWN && move->map[move->player_y + 1][move->player_x] == 'E')
 		|| (keyhook == RIGHT && move->map[move->player_y][move->player_x + 1] == 'E')))
 	{
-		ft_printf("FINISH\n Good Job Minie!");
+		ft_printf("\n*-------------------*\n");
+		ft_printf("|      FINISH       |\n");
+		ft_printf("|  Good Job Minie!  |\n");
+		ft_printf("*-------------------*\n\n");
 		close_window(move);
 	}
 	if (keyhook == UP && move->map[move->player_y - 1][move->player_x] != '1' && move->map[move->player_y - 1][move->player_x] != 'E')
