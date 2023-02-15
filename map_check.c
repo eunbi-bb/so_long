@@ -47,66 +47,27 @@ void	check_components(char *buf, t_data *comp)
 		exit(1);
 	}
 }
-//Check if I can use gnl func
-char	*join_line(char *line, char c)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	while (line[i])
-		i++;
-	str = malloc(i + 2);
-	i = 0;
-	while (line[i])
-	{
-		str[i] = line[i];
-		i++;
-	}
-	str[i] = c;
-	str[i + 1] = '\0';
-	free(line);
-	return(str);
-}
-
-int	check_line(char *line)
-{
-	int	i;
-	
-	i = 0;
-	if(!line)
-		return (0);
-	while (line[i])
-	{
-		if (line[i] == '\0')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 char	*complete_map(int fd)
 {
-	char	buf;
 	char	*line;
-	int		rd_bytes;
+	char	*content;
 
 	if (fd < 0)
-		line = NULL;
-	line = malloc(1);
-	line[0] = '\0';
-	rd_bytes = 1;
-	while (!check_line(line) && rd_bytes > 0)
+		return (NULL);
+	content = ft_strdup("");
+	while (1)
 	{
-		rd_bytes = read(fd, &buf, 1);
-		if ((rd_bytes == 0 && line[0] == '\0') || rd_bytes < 0)
+		line = get_next_line(fd);
+		
+		if (line) 
 		{
+			content = ft_strjoin(content, line);
 			free(line);
-			return (NULL);
 		}
-		if (rd_bytes == 0 && line[0] != '\0')
-			return (line);
-		line = join_line(line, buf);
+		else 
+		{
+			return (content);
+		}
 	}
-	return (line);
 }

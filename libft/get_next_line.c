@@ -6,7 +6,7 @@
 /*   By: eucho <eucho@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/05 09:14:52 by eucho         #+#    #+#                 */
-/*   Updated: 2022/12/21 14:15:43 by eunbi         ########   odam.nl         */
+/*   Updated: 2023/02/15 21:25:49 by eunbi         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*next_content(char *content)
 
 	i = 0;
 	j = 0;
-	len = ft_strlen(content);
+	len = gnl_strlen(content);
 	while (content[i] && content[i] != '\n')
 		i++;
 	if (!content[i])
@@ -96,7 +96,7 @@ char	*read_line(int fd, char *content)
 	if (!str)
 		return (NULL);
 	byte = 1;
-	while (byte != 0 && ft_strchr(content, '\n') == NULL)
+	while (byte != 0 && gnl_strchr(content, '\n') == NULL)
 	{
 		byte = read(fd, str, BUFFER_SIZE);
 		if (byte == -1)

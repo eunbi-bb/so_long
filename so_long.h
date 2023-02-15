@@ -58,6 +58,7 @@ void	put_exit(t_data *img);
 void	background(t_data *img);
 int		collect_total(t_data *img);
 void 	mapping(t_data *img);
+void 	maptile(t_data *img, int x, int y);
 
 int		map_line(char *str, t_data *var);
 void	freemap(t_data *var);

@@ -6,12 +6,12 @@
 void	background(t_data *img)
 {
 	img->y = 0;
+	img->file = mlx_xpm_file_to_image(img->mlx, "images/background.xpm", &img->pixel, &img->pixel);
 	while ((img->y) < (img->map_height))
 	{
 		img->x = 0;
 		while ((img->x) < (img->map_width))
 		{
-			img->file = mlx_xpm_file_to_image(img->mlx, "images/background.xpm", &img->pixel, &img->pixel);
 			mlx_put_image_to_window (img->mlx, img->win, img->file, img->pixel * img->x, img->pixel *img->y);
 			img->x++;
 		}

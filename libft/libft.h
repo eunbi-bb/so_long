@@ -6,7 +6,7 @@
 /*   By: eucho <eucho@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/10 16:01:27 by eucho         #+#    #+#                 */
-/*   Updated: 2022/12/21 14:15:38 by eunbi         ########   odam.nl         */
+/*   Updated: 2023/02/15 21:28:05 by eunbi         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,13 @@ int		ft_num_len(unsigned int num);
 //get_next_line
 char	*get_next_line(int fd);
 
+size_t	gnl_strlen(char *s);
+void	gnl_strlcpy(char *dst, char *src, size_t size);
+char	*gnl_strchr(char *s, int c);
+void	*gnl_memcpy(void *dst, const void *src, size_t n);
+char	*gnl_strjoin(char *s1, char *s2);
+
 char	*read_line(int fd, char *content);
 char	*copy_line(char *content);
 char	*next_content(char *content);
-char	*gnl_strjoin(char *s1, char *s2);
-void	gnl_strlcpy(char *dst, char *src, size_t size);
 #endif

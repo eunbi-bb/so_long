@@ -59,11 +59,17 @@ void	right(t_data *move)
 
 int	finish(int keyhook, t_data *move)
 {
+	char	playerUp = move->map[move->player_y - 1][move->player_x];
+	char	playerDown = move->map[move->player_y + 1][move->player_x];
+	char	playerLeft = move->map[move->player_y][move->player_x - 1];
+	char	playerRight = move->map[move->player_y][move->player_x + 1];
+
+
 	if (move->collect == 0
-		&& ((keyhook == UP && move->map[move->player_y - 1][move->player_x] == 'E')
-		|| (keyhook == LEFT && move->map[move->player_y][move->player_x - 1] == 'E')
-		|| (keyhook == DOWN && move->map[move->player_y + 1][move->player_x] == 'E')
-		|| (keyhook == RIGHT && move->map[move->player_y][move->player_x + 1] == 'E')))
+		&& ((keyhook == UP && playerUp == 'E')
+		|| (keyhook == LEFT && playerLeft == 'E')
+		|| (keyhook == DOWN && playerDown == 'E')
+		|| (keyhook == RIGHT && playerRight == 'E')))
 	{
 		ft_printf("\n*-------------------*\n");
 		ft_printf("|      FINISH       |\n");
@@ -71,13 +77,13 @@ int	finish(int keyhook, t_data *move)
 		ft_printf("*-------------------*\n\n");
 		close_window(move);
 	}
-	if (keyhook == UP && move->map[move->player_y - 1][move->player_x] != '1' && move->map[move->player_y - 1][move->player_x] != 'E')
+	if (keyhook == UP && playerUp != '1' && playerUp != 'E')
 		up(move);
-	if (keyhook == LEFT && move->map[move->player_y][move->player_x - 1] != '1' && move->map[move->player_y][move->player_x - 1] != 'E')
+	if (keyhook == LEFT && playerLeft != '1' && playerLeft != 'E')
 		left(move);
-	if (keyhook == DOWN && move->map[move->player_y + 1][move->player_x] != '1' && move->map[move->player_y + 1][move->player_x] != 'E')
+	if (keyhook == DOWN && playerDown != '1' && playerDown != 'E')
 		down(move);
-	if (keyhook == RIGHT && move->map[move->player_y][move->player_x + 1] != '1' && move->map[move->player_y][move->player_x + 1] != 'E')
+	if (keyhook == RIGHT && playerRight != '1' && playerRight != 'E')
 		right(move);
 	return (0);
 }
