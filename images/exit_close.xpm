@@ -34,7 +34,7 @@ static char *exit_pixel[] = {
 "q c #D5D421",
 "w c #D52121",
 "e c #D52121",
-"r c #2d8043",
+"r c None",
 /* pixels */
 "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr===.....rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
 "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr===.....rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",

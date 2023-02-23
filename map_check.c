@@ -1,4 +1,15 @@
-#include "mlx_linux/mlx.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   map_check.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: eucho <eucho@student.codam.nl>               +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/02/20 09:25:40 by eucho         #+#    #+#                 */
+/*   Updated: 2023/02/23 20:40:00 by eunbi         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include "libft/libft.h"
 
@@ -10,8 +21,32 @@ void	check_map(char *buf, t_data *map)
 		ft_printf("ERROR\n The map size is invalid.\n");
 		exit(1);
 	}
-	check_limit_x(map);
-	check_limit_y(map);
+	check_walls_x(map);
+	check_walls_y(map);
+}
+
+void	map_error(char *buf, t_data *comp)
+{
+	if (!buf[0])
+	{
+		ft_printf("ERROR\nIt is an empty file\n.");
+		exit(0);
+	}
+	if (comp->player != 1)
+	{
+		ft_printf("ERROR\nOnly one player is allowed.\n");
+		exit(1);
+	}
+	if (comp->collect < 1)
+	{
+		ft_printf("ERORR\nCollects should be at least one.\n");
+		exit(1);
+	}
+	if (comp->exit != 1)
+	{
+		ft_printf("ERROR\nOnly one exit is allowed.\n");
+		exit(1);
+	}
 }
 
 void	check_components(char *buf, t_data *comp)
@@ -21,31 +56,22 @@ void	check_components(char *buf, t_data *comp)
 	i = 0;
 	while (buf[i])
 	{
-		if (buf[i] == 'P')
+		if (buf[i] == 'P') {
 			comp->player++;
-		if (buf[i] == 'C')
+		} else if (buf[i] == 'C')
 			comp->collect++;
-		if (buf[i] == 'E')
+		else if (buf[i] == 'E')
 			comp->exit++;
-		if (buf[i] == '\n')
+		else if (buf[i] == '\n')
 			comp->map_height++;
+		else if (buf[i] != '1' && buf[i] != '0')
+		{
+			ft_printf("ERROR\nInvalid character in map.\n");
+			exit(1);
+		}
 		i++;
 	}
-	if (comp->player != 1)
-	{
-		ft_printf("ERROR\nOnly one player is available.\n");
-		exit(1);
-	}
-	if (comp->collect < 1)
-	{
-		ft_printf("ERROR\nCollects should be more than one.\n");
-		exit(1);
-	}
-	if (comp->exit != 1)
-	{
-		ft_printf("ERROR\nOnly one exit is available.\n");
-		exit(1);
-	}
+	map_error(buf, comp);
 }
 
 char	*complete_map(int fd)
@@ -55,19 +81,17 @@ char	*complete_map(int fd)
 
 	if (fd < 0)
 		return (NULL);
-	content = ft_strdup("");
+	content = "";
 	while (1)
 	{
 		line = get_next_line(fd);
-		
-		if (line) 
+		if (line)
 		{
 			content = ft_strjoin(content, line);
-			free(line);
+			free (line);
 		}
-		else 
-		{
+		else
 			return (content);
-		}
 	}
+	return (content);
 }

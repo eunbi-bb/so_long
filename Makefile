@@ -10,7 +10,8 @@ CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
 MLX_API		=	-Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
-SRC			=	so_long.c set_data.c put_image.c mapping.c map_check.c key_hook.c check_limit.c
+SRC			=	so_long.c set_data.c put_image.c put_map_images.c map_check.c key_hook.c \
+				check_walls.c close.c flood_fill.c
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
 OBJF		=	.cache_exists

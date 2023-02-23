@@ -1,27 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   so_long.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: eucho <eucho@student.codam.nl>               +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/02/20 11:04:01 by eucho         #+#    #+#                 */
+/*   Updated: 2023/02/23 20:29:02 by eunbi         ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mlx_linux/mlx.h"
 #include "libft/libft.h"
 #include "so_long.h"
 #include <stdlib.h>
 #include <fcntl.h>
 
-
 void	window(t_data *window)
 {
-	// int win_width;
-	// int win_height;
-
-	// window->pixel = 50;
-	// win_width = window->pixel * window->map_width;
-	// win_height = window->pixel * window->map_height;
-	// window->mlx = mlx_init();
-	// window->win = mlx_new_window(window->mlx, win_width, win_height, "so_long");
-	// mapping(window);
 	window->pixel = 80;
 	window->mlx = mlx_init();
-	window->win = mlx_new_window(window->mlx, window->pixel * window->map_width, window->pixel * window->map_height, "so_long");
-	
-	background(window);
-	mapping(window);
+	window->win = mlx_new_window(window->mlx,
+			(window->pixel * window->map_width),
+			(window->pixel * window->map_height), "so_long");
+	put_map_images(window);
 }
 
 void	open_map(char **argv, t_data *map)
@@ -39,7 +41,7 @@ void	open_map(char **argv, t_data *map)
 	}
 	buffer = complete_map(fd);
 	check_components(buffer, map);
-	map->map = ft_split(buffer, '\n'); // checke if I can use gnl
+	map->map = ft_split(buffer, '\n');
 	while (map->map[0][i] != '\0')
 	{
 		map->map_width++;
@@ -53,28 +55,29 @@ void	check_arg(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_printf("ERORR\nNumber of arguments should be 2.");
-		exit(0);
+		ft_printf("ERROR\nTwo arguments are expected. eg.'./so_long *.ber.'");
+		exit(1);
 	}
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 	{
-		ft_printf("Error\nInavlid filename extension");
+		ft_printf("Error\nInvalid filename extension, .ber expected.");
 		exit(1);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	t_data game;
+	t_data	game;
 
 	check_arg(argc, argv);
 	set_data(&game);
 	open_map(argv, &game);
 	window(&game);
-	mlx_hook(game.win, 2, 1L << 0, finish, &game);
-	mlx_hook(game.win, QUIT, LeaveWindowMask, close_window, &game); // Cross button
-	mlx_key_hook(game.win, ESC_hook, &game); // ESC key
+	valid_path(&game);
+	mlx_hook(game.win, 2, 1L << 0, key_press, &game);
+	mlx_hook(game.win, QUIT, 1L << 5, close_window, &game);
+	mlx_key_hook(game.win, esc_hook, &game);
 	mlx_loop(game.mlx);
-	exit(0);
-	return(0);
+	//system ("leaks ./so_long");
+	return (0);
 }
