@@ -6,7 +6,7 @@
 /*   By: eucho <eucho@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 11:04:01 by eucho         #+#    #+#                 */
-/*   Updated: 2023/02/23 20:29:02 by eunbi         ########   odam.nl         */
+/*   Updated: 2023/02/24 22:28:00 by eunbi         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,9 @@ int	main(int argc, char **argv)
 	open_map(argv, &game);
 	window(&game);
 	valid_path(&game);
-	mlx_hook(game.win, 2, 1L << 0, key_press, &game);
+	mlx_hook(game.win, 02, 1L << 0, key_press, &game);
 	mlx_hook(game.win, QUIT, 1L << 5, close_window, &game);
 	mlx_key_hook(game.win, esc_hook, &game);
 	mlx_loop(game.mlx);
-	//system ("leaks ./so_long");
 	return (0);
 }

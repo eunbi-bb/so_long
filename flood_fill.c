@@ -6,7 +6,7 @@
 /*   By: eucho <eucho@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 13:52:45 by eucho         #+#    #+#                 */
-/*   Updated: 2023/02/23 20:18:40 by eunbi         ########   odam.nl         */
+/*   Updated: 2023/02/24 22:32:42 by eunbi         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	flood_fill(t_data *map, int x, int y)
 	
 	if (tmp[y][x] == 1 || map->map[y][x] == '1')
 		return ;
-	if (map->map[y][x] == 'E')
+	else if (map->map[y][x] == 'E')
 	{
 		map->exit--;
 		return ;
@@ -30,13 +30,6 @@ void	flood_fill(t_data *map, int x, int y)
 	flood_fill(map, x, y + 1);
 	flood_fill(map, x - 1, y);
 	flood_fill(map, x + 1, y);
-	// for (int i = 0; i < map->map_height; i++) {
-    //     for (int j = 0; j < map->map_width; j++) {
-    //         printf("%d ", tmp[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-	// printf("\n");
 }
 
 void valid_path(t_data *map)

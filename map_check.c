@@ -6,7 +6,7 @@
 /*   By: eucho <eucho@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 09:25:40 by eucho         #+#    #+#                 */
-/*   Updated: 2023/02/23 20:40:00 by eunbi         ########   odam.nl         */
+/*   Updated: 2023/02/24 22:19:38 by eunbi         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 void	check_map(char *buf, t_data *map)
 {
+	if (map->map_height > 1024 || map->map_width > 1024)
+	{
+		ft_printf("ERROR\nMaximum width and heigth is 1024.\n");
+		exit(1);
+	}
 	map->map_size = ft_strlen(buf) - map->map_height;
 	if (map->map_size != map->map_width * map->map_height)
 	{
