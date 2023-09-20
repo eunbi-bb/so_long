@@ -6,7 +6,7 @@
 /*   By: eucho <eucho@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/20 09:25:40 by eucho         #+#    #+#                 */
-/*   Updated: 2023/02/24 22:19:38 by eunbi         ########   odam.nl         */
+/*   Updated: 2023/02/25 16:47:43 by eucho         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,24 @@ char	*complete_map(int fd)
 {
 	char	*line;
 	char	*content;
+	char	*tmp;
 
 	if (fd < 0)
 		return (NULL);
-	content = "";
+	content = ft_strdup("");
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line)
 		{
+			tmp = content;
 			content = ft_strjoin(content, line);
-			free (line);
+			free(tmp);
+			free(line);
 		}
 		else
 			return (content);
 	}
-	return (content);
+	free(content);
+	return (NULL);
 }

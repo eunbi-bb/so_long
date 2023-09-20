@@ -20,7 +20,7 @@ void	flood_fill(t_data *map, int x, int y)
 		return ;
 	else if (map->map[y][x] == 'E')
 	{
-		map->exit--;
+		map->exit = 0;
 		return ;
 	}
 	tmp[y][x] = 1;

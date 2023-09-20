@@ -48,6 +48,7 @@ void	open_map(char **argv, t_data *map)
 		i++;
 	}
 	check_map(buffer, map);
+	free(buffer);
 	close(fd);
 }
 
